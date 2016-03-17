@@ -1,6 +1,5 @@
 module.exports = (opts)->
-  createICal: (event)->
-    
+  createICalForSingleEvent: (event)->
     ical = require('ical-generator')
     cal = ical(
       domain: 'sebbo.net'
@@ -15,3 +14,9 @@ module.exports = (opts)->
       location: event.street
       url: 'http://sebbo.net/'
     cal.toString()
+  createICalForEvents: (events)->
+    result = ''
+    for event in events
+      cal = this.createICalForSingleEvent event
+      result += cal
+    result

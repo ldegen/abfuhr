@@ -1,0 +1,2 @@
+C:\Users\pdegene\Documents\privat\Abfuhr\obj\Debug\abfuhr.njsprojResolveAssemblyReference.cache
+C:\Users\pdegene\Documents\privat\Abfuhr\bin\Microsoft.NodejsTools.WebRole.dll
