@@ -19,7 +19,6 @@ describe "The writer", ->
       street: "Lothar Strasse"
       type: "grueneTonne - einmal jährlich"}];
     cal = writer.createICalForEvents events
-    console.log(cal)
     expect(cal).match /Ramelshoven/
     expect(cal).match /Lothar/
     expect(cal).match /grueneTonne/

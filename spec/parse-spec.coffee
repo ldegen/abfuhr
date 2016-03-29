@@ -18,3 +18,12 @@ describe "The parser", ->
     p = parser input
     expect(p).to.be.fulfilled.then (events)->
       expect(events.filter((ev)->not ev.date?)).to.be.empty
+
+  it "reads in valid streets", ->
+    input = require './data/data.json'
+
+    p = parser input
+    expect(p).to.be.fulfilled.then (events)->
+      expect(events).not.empty
+      expect(events[0].street).to.equal "Aennchenplatz"
+      expect(events[0].street).not.empty

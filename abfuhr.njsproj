@@ -18,8 +18,10 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Content Include="package.json" />
+    <Content Include="spec\abfuhr2ical-spec.coffee" />
     <Content Include="spec\parse-spec.coffee" />
     <Content Include="spec\writer-spec.coffee" />
+    <Content Include="src\abfuhr2ical.coffee" />
     <Content Include="src\parser.coffee" />
     <Content Include="src\writer.coffee" />
     <Content Include="spec\data\data.json" />
