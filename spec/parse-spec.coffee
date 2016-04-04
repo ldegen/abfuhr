@@ -11,7 +11,7 @@ describe "The parser", ->
       expect(events[0].street).not.empty
       expect(events[0].type).to.be.a "string"
       expect(events[0].type).not.empty
-  
+
   it "ignores empty TERMIN###-strings", ->
     input = require './data/data.json'
 
@@ -27,3 +27,10 @@ describe "The parser", ->
       expect(events).not.empty
       expect(events[0].street).to.equal "Aennchenplatz"
       expect(events[0].street).not.empty
+
+  it "gives unique events", ->
+    input = require './data/data.json'
+
+    p = parser input
+    expect(p).to.be.fulfilled.then (events)->
+      expect(events[0].date).not.to.be.equal events[1].date

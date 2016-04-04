@@ -1,22 +1,25 @@
-module.exports = (opts)->
-  createICalForSingleEvent: (event)->
-    ical = require('ical-generator')
-    cal = ical(
-      domain: 'sebbo.net'
-      name: 'my first iCal')
-    # overwrite domain
-    cal.domain 'sebbo.net'
-    cal.createEvent
-      start: event.date
-      end: event.date
-      summary: event.type
-      description: event.type
-      location: event.street
-      url: 'http://sebbo.net/'
-    cal.toString()
-  createICalForEvents: (events)->
-    result = ''
-    for event in events
-      cal = this.createICalForSingleEvent event
-      result += cal
-    result
+module.exports = (opts) ->
+  ical = require('ical-generator')
+  cal = ical(name: 'Abfuhrtermine')
+  # overwrite domain
+  cal.domain 'sebbo.net'
+  timeOffsetInHours = 0
+
+  do->
+    setTimeOffset: (offsetInHours)->timeOffsetInHours=offsetInHours
+    createICalForSingleEvent: (event)->
+      event = cal.createEvent
+        start: new Date(event.date.getTime() - 1000*60*60*timeOffsetInHours)
+        end: new Date(event.date.getTime() - 1000*60*60*(timeOffsetInHours-1))
+        summary: event.type
+        description: event.type
+        location: event.street
+      event.createAlarm({type: 'display', trigger: 300})
+      event
+
+    createICalForEvents: (events)->
+      this.createICalForSingleEvent event for event in events
+
+    toString: ()->cal.toString()
+
+    events: cal.events()
